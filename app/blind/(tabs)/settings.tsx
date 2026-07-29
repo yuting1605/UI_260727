@@ -48,15 +48,15 @@ export default function BlindSettingsScreen() {
 
   return (
     <View style={styles.container}>
-      {/* 身分顯示卡片 */}
+      {/* 💡 身份顯示卡片 */}
       <View style={styles.profileCard}>
         <View style={styles.avatarContainer}>
           <Ionicons name="person" size={32} color="#000000" />
         </View>
 
         <View style={styles.profileInfo}>
-          <Text 
-            style={styles.userName} 
+          <Text
+            style={styles.userName}
             numberOfLines={1}
             accessible={true}
             accessibilityLabel={`顯示名稱：${userName}`}
@@ -64,7 +64,7 @@ export default function BlindSettingsScreen() {
             {userName}
           </Text>
 
-          <Text 
+          <Text
             style={styles.userAccount}
             accessible={true}
             accessibilityLabel={`帳號：${userAccount || "無"}`}
@@ -72,7 +72,7 @@ export default function BlindSettingsScreen() {
             {userAccount ? `帳號：${userAccount}` : ""}
           </Text>
 
-          <View 
+          <View
             style={styles.roleBadge}
             accessible={true}
             accessibilityLabel={`身分：${userRole}`}
@@ -83,22 +83,35 @@ export default function BlindSettingsScreen() {
         </View>
       </View>
 
-      {/* ✏️ 新增：編輯個人資料按鈕 */}
+      {/* ✏️ 編輯個人資料按鈕（無箭頭、置中卡片） */}
       <TouchableOpacity
-        style={styles.editProfileButton}
+        style={styles.settingItem}
         onPress={() => router.push("/blind/edit-name")}
         accessible={true}
         accessibilityLabel="編輯個人資料"
         accessibilityHint="點擊後開啟修改名稱頁面"
         accessibilityRole="button"
       >
-        <Ionicons name="create-outline" size={22} color="rgb(0, 0, 0)" style={{ marginRight: 8 }} />
-        <Text style={styles.editProfileText}>編輯個人資料</Text>
+        <Ionicons name="create-outline" size={22} color="#000000" style={{ marginRight: 8 }} />
+        <Text style={styles.settingText}>編輯個人資料</Text>
       </TouchableOpacity>
 
-      {/* 登出按鈕 */}
-      <TouchableOpacity 
-        style={styles.logoutButton} 
+      {/* ❓ 常見問題按鈕（無箭頭、置中卡片） */}
+      <TouchableOpacity
+        style={styles.settingItem}
+        onPress={() => router.push("/blind/faq")}
+        accessible={true}
+        accessibilityLabel="常見問題與說明"
+        accessibilityHint="點擊開啟常見問題與說明頁面"
+        accessibilityRole="button"
+      >
+        <Ionicons name="help-circle-outline" size={22} color="#000000" style={{ marginRight: 8 }} />
+        <Text style={styles.settingText}>常見問題與說明</Text>
+      </TouchableOpacity>
+
+      {/* 🚪 登出系統按鈕 */}
+      <TouchableOpacity
+        style={styles.logoutButton}
         onPress={handleLogout}
         accessible={true}
         accessibilityLabel="登出系統"
@@ -106,28 +119,33 @@ export default function BlindSettingsScreen() {
         accessibilityRole="button"
       >
         <Ionicons name="log-out-outline" size={22} color="#FF3B30" style={{ marginRight: 8 }} />
-        <Text style={styles.logoutText}>登出系統</Text>
+        <Text style={styles.logoutText}>登出</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    padding: 20, 
+  container: {
+    flex: 1,
+    padding: 20,
     paddingTop: 30,
     backgroundColor: "#F2F2F7",
   },
+
+  // 身分顯示卡片樣式
   profileCard: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-    padding: 18,
+    padding: 20,
     borderRadius: 20,
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: "#E5E5EA",
+    marginBottom: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 3,
   },
   avatarContainer: {
     width: 60,
@@ -136,7 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E5E5EA",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 14,
+    marginRight: 16,
   },
   profileInfo: {
     flex: 1,
@@ -145,12 +163,12 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "#000000",
+    color: "#1C1C1E",
     marginBottom: 2,
   },
   userAccount: {
     fontSize: 13,
-    color: "#6C6C70",  
+    color: "#8E8E93",
     marginBottom: 8,
   },
   roleBadge: {
@@ -168,25 +186,29 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
 
-  // 藍框大按鈕：編輯個人資料
-  editProfileButton: {
+  // ✏️ 與 ❓ 通用卡片按鈕樣式（照護端同款：柔和陰影、無黑框、置中對齊）
+  settingItem: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFFFFF",
     paddingVertical: 16,
+    paddingHorizontal: 20,
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgb(0, 0, 0)",
-    marginBottom: 12,
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 2,
   },
-  editProfileText: {
+  settingText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "rgb(0, 0, 0)",
+    color: "#000000",
   },
 
-  // 紅框大按鈕：登出系統
+  // 🚪 登出按鈕樣式
   logoutButton: {
     flexDirection: "row",
     alignItems: "center",
@@ -194,8 +216,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     paddingVertical: 16,
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "#FF3B30",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 2,
   },
   logoutText: {
     fontSize: 18,

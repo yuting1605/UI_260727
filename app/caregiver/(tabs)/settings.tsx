@@ -76,7 +76,7 @@ export default function CaregiverSettingsScreen() {
         </View>
       </View>
 
-      {/* ✏️ 編輯個人資料按鈕（比照盲人端排版） */}
+      {/* ✏️ 編輯個人資料按鈕 */}
       <TouchableOpacity
         style={styles.editProfileButton}
         onPress={() => router.push("/caregiver/edit-name")}
@@ -85,11 +85,23 @@ export default function CaregiverSettingsScreen() {
         accessibilityHint="點擊後開啟修改名稱頁面"
         accessibilityRole="button"
       >
-        <Ionicons name="create-outline" size={22} color="rgb(0, 0, 0)" style={{ marginRight: 8 }} />
+        <Ionicons name="create-outline" size={22} color="#000000" style={{ marginRight: 8 }} />
         <Text style={styles.editProfileText}>編輯個人資料</Text>
       </TouchableOpacity>
 
-      {/* 登出按鈕 */}
+{/* ❓ 常見問題按鈕 */}
+<TouchableOpacity
+  style={styles.settingItem}
+  onPress={() => router.push("/caregiver/faq")}
+  accessible={true}
+  accessibilityLabel="常見問題與說明"
+  accessibilityRole="button"
+>
+  <Ionicons name="help-circle-outline" size={22} color="#000000" style={{ marginRight: 8 }} />
+  <Text style={styles.settingText}>常見問題與說明</Text>
+</TouchableOpacity>
+
+      {/* 🚪 登出按鈕 */}
       <TouchableOpacity
         style={styles.logoutButton}
         onPress={handleLogout}
@@ -103,7 +115,7 @@ export default function CaregiverSettingsScreen() {
           color="#FF3B30"
           style={{ marginRight: 8 }}
         />
-        <Text style={styles.logoutText}>登出系統</Text>
+        <Text style={styles.logoutText}>登出</Text>
       </TouchableOpacity>
     </View>
   );
@@ -170,7 +182,7 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
 
-  // ✏️ 編輯個人資料按鈕樣式（盲人端同款獨立卡片）
+  // ✏️ 編輯個人資料按鈕樣式
   editProfileButton: {
     flexDirection: "row",
     alignItems: "center",
@@ -191,7 +203,29 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
 
-  // 登出按鈕樣式
+  // ❓ 常見問題按鈕樣式
+  settingItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFF",
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  settingText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#000000",
+  },
+
+  // 🚪 登出按鈕樣式
   logoutButton: {
     flexDirection: "row",
     alignItems: "center",
